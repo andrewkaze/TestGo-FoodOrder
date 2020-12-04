@@ -73,6 +73,13 @@ func GetOrderByID(order *Order, id string)(err error)  {
 	return nil
 }
 
+func GetAllOrder(order *[]Order) (err error)  {
+	if err = Config.DB.Table("orders").Find(order).Error; err != nil{
+		return err
+	}
+	return nil
+}
+
 func GetAllOrderByIDUser(order *[]Order, id string)(err error)  {
 	if err = Config.DB.Table("orders").Where("id_user=?", id).Find(order).Error; err != nil{
 		return err

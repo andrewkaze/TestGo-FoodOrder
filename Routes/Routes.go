@@ -39,7 +39,7 @@ func SetupRouter() *gin.Engine  {
 
 	waitergroup := r.Group("/waiter",Middlewares.AuthorizeJWT(), Middlewares.AuthorizeUser())
 	{
-		waitergroup.GET("user", Controllers.GetUsers)
+		waitergroup.GET("orders", Controllers.GetOrders)
 		waitergroup.PUT("order/:id", Controllers.UpdateOrder)
 
 	}
@@ -52,6 +52,7 @@ func SetupRouter() *gin.Engine  {
 		admingroup.PUT("menu/:id", Controllers.UpdateMenu)
 
 		admingroup.GET("user/:id", Controllers.GetUserByID)
+		admingroup.GET("users", Controllers.GetUsers)
 		admingroup.POST("user", Controllers.CreateUser)
 		admingroup.PUT("user/:id", Controllers.UpdateUser)
 		admingroup.DELETE("user/:id", Controllers.DeleteUser)

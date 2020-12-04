@@ -167,6 +167,23 @@ func CreateOrder(c *gin.Context){
 	}
 }
 
+func GetOrders(c *gin.Context)  {
+	var order[]Models.Order
+	err := Models.GetAllOrder(&order)
+	if err != nil{
+		c.AbortWithStatus(http.StatusNotFound)
+	}else{
+		format := c.DefaultQuery("format", "json")
+		if format == "json"{
+			c.JSON(http.StatusOK, order)
+		}else{
+			c.XML(http.StatusOK, order)
+		}
+	}
+}
+
+
+
 func GetAllOrderByIDUser(c *gin.Context)  {
 
 	var order[]Models.Order
