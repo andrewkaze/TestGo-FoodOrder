@@ -131,7 +131,7 @@ func UpdateOrder(c *gin.Context)  {
 
 	c.BindJSON(&order)
 	//err = SendMq(&user,"updateUser")
-	order.Status="Processed"
+	//order.Status="Processed"
 	err = Models.UpdateOrder(&order, id)
 	if err != nil{
 		c.AbortWithStatus(http.StatusNotFound)
